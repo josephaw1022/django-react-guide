@@ -12,23 +12,64 @@ module.exports = {
         path: path.resolve(__dirname, '../backend/myapp/static/myapp/build/'),
         filename: '[name].js',
     },
+    
     // Tell Webpack to use Babel for all JavaScript files, expect for stuff in node_modules.
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.m?js$/,
                 exclude: /node_modules/,
-                use: ['babel-loader'],
+                use: {
+                  loader: 'babel-loader',
+                  options: {
+                    presets: [
+                      ['@babel/preset-env', { targets: "defaults" }]
+                    ]
+                  }
+                }
+              }, 
+
+            
+            {
+                test: /\.jsx$/,
+                exclude: '/node_modules/',
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                      presets: [
+                        ['@babel/preset-env', { targets: "defaults" }]
+                      ]
+                    }
+                  } 
             },
+            {
+                test:/\.s[ac]ss$/,
+                use:[
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+
+                ]
+            }, 
+            {
+                test: /\.less$/,
+                use: ["style-loader", "css-loader", "less-loader"]
+             }, 
+             {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"]
+              }
+              ,
+            
         ]
     },
-    plugins: [
-        // Don't output new files if there is an error
-        new webpack.NoEmitOnErrorsPlugin(),
-    ],
+    // plugins: [
+    //     // Don't output new files if there is an error
+    //     new webpack.NoEmitOnErrorsPlugin(),
+    // ],
     // Where find modules that can be imported (eg. React) 
     resolve: {
-        extensions: ['*', '.js', '.jsx'],
+        extensions: ['*', '.js', '.jsx', '.css', '.scss', '.sass' ],
         modules: [
             path.resolve(__dirname, 'src'),
             path.resolve(__dirname, 'node_modules'),
