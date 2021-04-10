@@ -5,13 +5,18 @@
   "main": "webpack.config.js",
   "scripts": {
     "dev": "webpack --watch --config webpack.config.js",
-    "build": "webpack", 
-    "helpme" : "webpack --help"
+    "build": "webpack",
+    "helpme": "webpack --help",
+    "style": "prettier --write src/"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "axios": "^0.21.1",
+    "babel-core": "^6.26.3",
+    "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.6.0",
     "css-loader": "^5.2.0",
     "less-loader": "^8.0.0",

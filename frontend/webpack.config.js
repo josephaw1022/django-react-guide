@@ -1,18 +1,25 @@
 // frontend/webpack.config.js
 const path = require('path')
-const webpack = require('webpack')
+
 module.exports = {
+
+  
+
     // Where Webpack looks to load your JavaScript
     entry: {
-        main: path.resolve(__dirname, 'src/index.js'),
+        main: ['babel-polyfill', path.resolve(__dirname, 'src/index.js')] 
+        
+        
     },
+
     mode: 'development',
+
     // Where Webpack spits out the results (the myapp static folder)
     output: {
         path: path.resolve(__dirname, '../backend/myapp/static/myapp/build/'),
         filename: '[name].js',
     },
-    
+
     // Tell Webpack to use Babel for all JavaScript files, expect for stuff in node_modules.
     module: {
         rules: [
@@ -63,10 +70,16 @@ module.exports = {
             
         ]
     },
-    // plugins: [
-    //     // Don't output new files if there is an error
-    //     new webpack.NoEmitOnErrorsPlugin(),
-    // ],
+
+
+    plugins: [
+      
+    
+      
+    ]
+      
+  
+    ,
     // Where find modules that can be imported (eg. React) 
     resolve: {
         extensions: ['*', '.js', '.jsx', '.css', '.scss', '.sass' ],
